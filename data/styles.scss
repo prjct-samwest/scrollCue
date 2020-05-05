@@ -285,3 +285,56 @@ table{
 .border-red{
   border: 5px solid red;
 }
+
+@media only screen and (max-width: 767px){
+
+  .btn{
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+  }
+
+  .Section.ex{
+    padding-top: 300px;
+  }
+
+  .Header{
+    padding: 8px;
+
+    .Header-logo{
+      padding: 0;
+      margin-bottom: 5px;
+      display: block;
+    }
+    .Header-nav{
+      position: static;
+    }
+
+    select,input{
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .Example{
+
+    img{
+      width: 100px;
+      height: auto;
+    }
+
+  }
+
+  .Options{
+
+    .Options-table{
+      width: 500px;
+    }
+
+    .Options-table-wrap{
+      overflow: auto;
+      overflow-scrolling: touch;
+    }
+
+  }
+}

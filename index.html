@@ -189,38 +189,41 @@
     <section class="Options Section">
         <div class="Section-inner" data-cues="slideInUp">
             <h2 class="Options-title Title">OPTIONS</h2>
-            <table class="Options-table">
-                <thead>
-                <tr>
-                    <th>Option</th>
-                    <th>Type</th>
-                    <th>Default</th>
-                    <th>Description</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>duration</td>
-                    <td>Number</td>
-                    <td>600</td>
-                    <td>Time to show the element.(ms)</td>
-                </tr>
-                <tr>
-                    <td>interval</td>
-                    <td>Number</td>
-                    <td>-0.7</td>
-                    <td>Time interval for showing side-by-side elements.<br>You can use negative numbers.(Integer or Real number)<br>
-                        <mark>Integer</mark> : (ms)<br>
-                        <mark>Real number</mark> : Percentage of duration time of the previous element.</td>
-                </tr>
-                <tr>
-                    <td>percentage</td>
-                    <td>Number</td>
-                    <td>0.75</td>
-                    <td>Percentage of screen height to start showing elements.(Real number from 0 to 1)</td>
-                </tr>
-                </tbody>
-            </table>
+
+            <div class="Options-table-wrap">
+                <table class="Options-table">
+                    <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>duration</td>
+                        <td>Number</td>
+                        <td>600</td>
+                        <td>Time to show the element.(ms)</td>
+                    </tr>
+                    <tr>
+                        <td>interval</td>
+                        <td>Number</td>
+                        <td>-0.7</td>
+                        <td>Time interval for showing side-by-side elements.<br>You can use negative numbers.(Integer or Real number)<br>
+                            <mark>Integer</mark> : (ms)<br>
+                            <mark>Real number</mark> : Percentage of duration time of the previous element.</td>
+                    </tr>
+                    <tr>
+                        <td>percentage</td>
+                        <td>Number</td>
+                        <td>0.75</td>
+                        <td>Percentage of screen height to start showing elements.(Real number from 0 to 1)</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
             <section class="Options-example">
                 <h3 class="Title2">EXAMPLE</h3>
                 <pre><code>scrollCue.init({
