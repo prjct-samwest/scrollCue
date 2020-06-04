@@ -1,0 +1,30 @@
+{
+  "name": "scrollcue",
+  "version": "1.0.0",
+  "description": "scrollCue.js is a JavaScript plugin that works without jQuery. Show elements by scrolling.",
+  "keywords": [
+    "vanilla js",
+    "fadein",
+    "scroll"
+  ],
+  "main": "scrollCue.min.js",
+  "files": [
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "scrollCue.js",
+    "scrollCue.min.js",
+    "scrollCue.scss",
+    "scrollCue.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prjct-samwest/scrollCue.git"
+  },
+  "author": "SamWest <prjct.samwest@gmail.com>(https://github.com/prjct-samwest/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/prjct-samwest/scrollCue/issues"
+  },
+  "homepage": "https://github.com/prjct-samwest/scrollCue#readme"
+}

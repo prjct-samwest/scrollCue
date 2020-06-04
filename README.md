@@ -7,6 +7,17 @@ Show elements by scrolling.
 * [Examples](https://prjct-samwest.github.io/scrollCue/examples.html)  
 * [CSS Customize](https://prjct-samwest.github.io/scrollCue/customize.html)
 
+## Install
+
+### npm Install
+```
+npm install scrollque
+```
+
+### File Download
+https://github.com/prjct-samwest/scrollCue/archive/v1.0.0.zip
+
+
 ## Usage
 
 ### Step.1 - Include CSS and Javascript file
@@ -106,6 +117,8 @@ See below for animation confirmation and other markup.
 ## Browser support
 scrollCue.js works on modern browser as Chrome, Firefox, Safari, Edge, IE11.
 
+## Version
+The latest version is 1.0.0
 
 ## License
 Created by SamWest.  

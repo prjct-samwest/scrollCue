@@ -184,7 +184,6 @@ table{
     font-family: 'Montserrat';
     font-size: 60px;
     font-weight: bold;
-    margin-bottom: 40px;
 
     span{
       display: inline-block;
@@ -196,6 +195,11 @@ table{
       font-weight: normal;
       display: block;
     }
+  }
+
+  .Mv-btns{
+    margin-top: 40px;
+    margin-bottom: 20px;
   }
 
   .Mv-copy{

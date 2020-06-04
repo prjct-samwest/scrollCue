@@ -183,7 +183,6 @@ table th, table td {
   font-family: 'Montserrat';
   font-size: 60px;
   font-weight: bold;
-  margin-bottom: 40px;
 }
 
 .Mv .Mv-title span {
@@ -195,6 +194,11 @@ table th, table td {
   font-family: sans-serif;
   font-weight: normal;
   display: block;
+}
+
+.Mv .Mv-btns {
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .Mv .Mv-copy {
