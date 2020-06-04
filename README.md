@@ -11,7 +11,7 @@ Show elements by scrolling.
 
 ### npm Install
 ```
-npm install scrollque
+npm install scrollcue
 ```
 
 ### File Download
