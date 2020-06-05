@@ -15,7 +15,7 @@ npm install scrollcue
 ```
 
 ### File Download
-https://github.com/prjct-samwest/scrollCue/archive/v1.0.0.zip
+https://github.com/prjct-samwest/scrollCue/archive/v1.0.1.zip
 
 
 ## Usage
@@ -118,7 +118,7 @@ See below for animation confirmation and other markup.
 scrollCue.js works on modern browser as Chrome, Firefox, Safari, Edge, IE11.
 
 ## Version
-The latest version is 1.0.0
+The latest version is 1.0.1
 
 ## License
 Created by SamWest.  
