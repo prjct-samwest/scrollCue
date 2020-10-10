@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**-----------------------
 
- scrollCue.js - ver.1.0.1
+ scrollCue.js - ver.2.0.0
  URL : https://prjct-samwest.github.io/scrollCue/
 
  created by SamWest.
@@ -12,9 +12,9 @@
 
 // COMMON SETTING VALUE
 
-   $shift : 30px;       // Used by slideInLeft, slideInRight, slideInDown, slideInUp
-   $zoom : 0.8;         // Used by ZoomIn, ZoomOut
-   $rotate : -15deg;    // Used by rotateIn
+$shift : 30px;       // Used by slideInLeft, slideInRight, slideInDown, slideInUp
+$zoom : 0.8;         // Used by ZoomIn, ZoomOut
+$rotate : -15deg;    // Used by rotateIn
 
 
 
