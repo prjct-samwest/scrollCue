@@ -1,6 +1,6 @@
 /**-----------------------
 
- scrollCue.js - ver.1.00
+ scrollCue.js - ver.2.0.0
  URL : https://prjct-samwest.github.io/scrollCue/
 
  created by SamWest.
@@ -12,39 +12,80 @@
 const scrollCue = (function () {
 
     let $f = {}, $e, $q;
-    let resizeTimer = 0, scrollEnable = true;
+    let resizeTimer = 0, scrollEnable = true, enable = true, ds = false, pcr = false;
 
     let $op, $defaultOptions = {
         duration : 600,
         interval : -0.7,
-        percentage : 0.75
+        percentage : 0.75,
+        enable : true,
+        docSlider : false,
+        pageChangeReset : false
     };
 
     $f = {
-        setEvents : function(){
+        setEvents : function(startHash){
 
-            window.addEventListener('load',$f.runQuery);
-
-            window.addEventListener('scroll',function () {
+            let scroll = function () {
 
                 if (scrollEnable) {
-                    requestAnimationFrame(function() {
+                    requestAnimationFrame(function () {
                         scrollEnable = true;
-                        $f.setQuery();
-                        $f.runQuery();
+
+                        if (enable) {
+                            $f.setQuery();
+                            $f.runQuery();
+                        }
+
                     });
                     scrollEnable = false;
                 }
-            });
+            }
+
+            if(enable &&!startHash){
+
+                window.addEventListener('load',$f.runQuery);
+
+            }
+
+
+            window.addEventListener('scroll',scroll);
+
+            if(ds){
+
+                let pages = docSlider.getElements().pages;
+
+                for(let i =0; i<pages.length; i++){
+
+                    let page = pages[i];
+
+                    page.addEventListener('scroll',function (e){
+
+                        let c = (docSlider.getCurrentIndex()) + '';
+                        let i = e.target.getAttribute('data-ds-index');
+
+                        if(c !== i)
+                            return false;
+
+                        if(docSlider._getWheelEnable())
+                            scroll();
+
+                    });
+
+                }
+
+            }
 
             window.addEventListener('resize',function () {
 
                 if (resizeTimer > 0) { clearTimeout(resizeTimer); }
                 resizeTimer = setTimeout(function () {
 
-                    $f.searchElements();
-                    $f.setQuery();
-                    $f.runQuery();
+                    if(enable) {
+                        $f.searchElements();
+                        $f.setQuery();
+                        $f.runQuery();
+                    }
 
                 }, 200);
 
@@ -100,6 +141,7 @@ const scrollCue = (function () {
                     $f.setAttrPtoC(child, 'data-sort', parent, 'data-sort', false);
                     $f.setAttrPtoC(child, 'data-addClass', parent, 'data-addClass', false);
                     $f.setAttrPtoC(child, 'data-group', parent, 'data-group', false);
+                    $f.setAttrPtoC(child, 'data-delay', parent, 'data-delay', false);
 
                 }
 
@@ -122,9 +164,28 @@ const scrollCue = (function () {
                     order    : $f.getOrderNumber(elm),
                     sort     : $f.getAttr(elm,'data-sort',null),
                     addClass : $f.getAttr(elm,'data-addClass',null),
-                    group    : $f.getAttr(elm,'data-group',null)
+                    group    : $f.getAttr(elm,'data-group',null),
+                    delay    : Number( $f.getAttr(elm,'data-delay',0))
 
                 });
+
+            }
+
+            if(ds){
+
+                let pages = docSlider.getElements().pages.length;
+
+                for(let i=0; i<pages; i++){
+
+                    let elms = document.querySelectorAll('[data-ds-index="'+ i +'"] [data-cue]:not([data-scpage])');
+
+                    for(let j=0; j<elms.length; j++){
+
+                        elms[j].setAttribute('data-scpage',i);
+
+                    }
+
+                }
 
             }
 
@@ -279,6 +340,18 @@ const scrollCue = (function () {
 
                 }
 
+                if(ds){
+
+                    let iIndex = elm.elm.getAttribute('data-scpage');
+                    let cIndex = docSlider.getCurrentIndex() + '';
+
+                    if(iIndex !== cIndex && !(iIndex === null)){
+
+                        continue;
+
+                    }
+
+                }
 
                 if(typeof $q[group] === "undefined"){
 
@@ -324,7 +397,7 @@ const scrollCue = (function () {
                             elms[j].elm.style.animationName = elms[j].cue;
                             elms[j].elm.style.animationDuration = elms[j].duration + 'ms';
                             elms[j].elm.style.animationTimingFunction = 'ease';
-                            elms[j].elm.style.animationDelay = interval + 'ms';
+                            elms[j].elm.style.animationDelay = interval + elms[j].delay + 'ms';
                             elms[j].elm.style.animationDirection = 'normal';
                             elms[j].elm.style.animationFillMode = 'both';
 
@@ -342,7 +415,9 @@ const scrollCue = (function () {
         },
         isElementIn : function (elm) {
 
-            return (window.pageYOffset > $f.getOffsetTop(elm)  - window.innerHeight * $op.percentage) || $f.isScrollEnd();
+            let scrollEndJudge = elm.hasAttribute('data-scpage') ? $f.isScrollEndWithDocSlider : $f.isScrollEnd;
+
+            return (window.pageYOffset > $f.getOffsetTop(elm)  - window.innerHeight * $op.percentage) || scrollEndJudge();
 
         },
         isScrollEnd : function () {
@@ -353,6 +428,13 @@ const scrollCue = (function () {
 
             return scrollTop >= html.scrollHeight - html.clientHeight;
 
+        },
+        isScrollEndWithDocSlider : function (){
+
+            let page = docSlider.getCurrentPage();
+
+            return page.scrollTop  >= page.scrollHeight - page.clientHeight;
+
         }
     };
 
@@ -360,16 +442,52 @@ const scrollCue = (function () {
         init : function (options) {
 
             $op = $f.setOptions($defaultOptions, options);
+            enable = $op.enable;
+            ds = $op.docSlider;
+            pcr = $op.pageChangeReset;
+
+
+            if(ds){
+                return;
+            }
+
             $f.setEvents();
             $f.searchElements();
             $f.setQuery();
 
         },
         update : function () {
+            if(enable) {
+                $f.searchElements();
+                $f.setQuery();
+                $f.runQuery();
+            }
+        },
+        enable : function (bool){
+            enable = typeof bool === 'undefined' ? !enable : bool;
+            scrollCue.update();
+        },
+        _hasDocSlider : function (){
+            return ds;
+        },
+        _hasPageChangeReset : function (){
+            return pcr;
+        },
+        _initWithDocSlider : function (startHash){
+            $f.setEvents(startHash);
             $f.searchElements();
             $f.setQuery();
-            $f.runQuery();
+        },
+        _updateWithDocSlider : function (){
+            if(enable){
+                $f.setQuery();
+                $f.runQuery();
+            }
+        },
+        _searchElements : function (){
+            $f.searchElements()
         }
     }
 
 })();
+
