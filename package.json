@@ -1,6 +1,6 @@
 {
   "name": "scrollcue",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "scrollCue.js is a JavaScript plugin that works without jQuery. Show elements by scrolling.",
   "keywords": [
     "vanilla js",
