@@ -9,7 +9,7 @@
 
  -----------------------**/
 
-const scrollCue = (function () {
+export const scrollCue = (function () {
 
     let $f = {}, $e, $q;
     let resizeTimer = 0, scrollEnable = true, enable = true, ds = false, pcr = false;
